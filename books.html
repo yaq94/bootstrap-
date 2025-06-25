@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古籍典藏 v3 - 大六壬知识科普网站</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/books.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">大六壬知识科普</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" href="intro.html">基础入门</a></li>
+                        <li class="nav-item"><a class="nav-link" href="deities.html">神将释义</a></li>
+                        <li class="nav-item"><a class="nav-link" href="cases.html">经典课例</a></li>
+                        <li class="nav-item"><a class="nav-link" href="divination.html">在线排盘</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="books.html">古籍典藏</a></li>
+                        <li class="nav-item"><a class="nav-link" href="community.html">留言交流</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container-fluid p-0">
+        
+        <div class="main-content-grid">
+            <!-- 模块一：经纬书海 -->
+            <section class="py-4 px-3 content-column left-column">
+                <h3 class="section-title-v3 text-center">经纬书海</h3>
+                <p class="lead text-muted text-center mb-4 small">以朝代为纬，以类别为经。</p>
+                <div id="loom-of-classics-container" class="loom-container"></div>
+            </section>
+
+            <!-- 模块二：层叠书简 -->
+            <section class="py-4 px-3 content-column right-column">
+                <h3 class="section-title-v3 text-center">层叠书简</h3>
+                <p class="lead text-muted text-center mb-4 small">阅千年简牍，如见故人来。</p>
+                <div id="layered-slips-container" class="slips-container"></div>
+            </section>
+        </div>
+
+        <!-- 模块四：墨池蕴玄机 -->
+        <section class="ink-wisdom-section py-5">
+            <div class="container text-center">
+                <h3 class="section-title-v3">点墨成珍</h3>
+                <p class="lead text-muted mb-4">点此印章，于墨池中探寻玄机。</p>
+        
+                <div id="ink-pool-container" class="ink-pool-container mt-5">
+                    <!-- The Ink Pool -->
+                    <div class="ink-pool">
+                        <!-- Final quote will be displayed here -->
+                        <div id="ink-pool-quote" class="ink-pool-quote"></div>
+                        <!-- Ripple animation element -->
+                        <div class="ripple"></div>
+                    </div>
+                    
+                    <!-- Keywords will be populated here -->
+                    <div id="ink-pool-keywords" class="ink-pool-keywords"></div>
+        
+                    <!-- The Seal Button -->
+                    <button id="ink-pool-button" class="ink-pool-btn" title="点墨成珍">
+                        <i class="bi bi-brush"></i> <!-- Changed icon to a brush -->
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 模块三：书页洞天 (Modal) -->
+    <div class="modal fade" id="book-details-modal" tabindex="-1" aria-labelledby="bookDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content book-modal-content">
+                <div id="book-details-modal-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <div class="container">
+            <p>&copy; 2025 大六壬知识科普网站. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/books.js"></script>
+</body>
+</html> 

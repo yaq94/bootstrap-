@@ -1,0 +1,537 @@
+/* cases.css */
+/* This file will contain all unique styles for the interactive case studies page. */
+
+/* Styles for the modules will be added here in subsequent steps. */
+
+/* MODULE 1: CASE SELECTOR CAROUSEL */
+.case-selector-container {
+    position: relative;
+    width: 100%;
+    height: 350px; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    overflow: hidden;
+}
+
+.case-card {
+    position: absolute;
+    width: 60%;
+    max-width: 400px;
+    height: auto;
+    padding: 2rem;
+    background-color: var(--bs-light);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: var(--bs-box-shadow);
+    transition: transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.case-card.active {
+    transform: translateX(0) translateZ(0) rotateY(0);
+    opacity: 1;
+    z-index: 10;
+}
+
+.case-card.prev {
+    transform: translateX(-50%) translateZ(-200px) rotateY(35deg);
+    opacity: 0.5;
+    filter: blur(2px);
+    z-index: 5;
+}
+
+.case-card.next {
+    transform: translateX(50%) translateZ(-200px) rotateY(-35deg);
+    opacity: 0.5;
+    filter: blur(2px);
+    z-index: 5;
+}
+
+/* Hidden cards for those far away */
+.case-card.hidden {
+    transform: translateX(0) translateZ(-500px) rotateY(0);
+    opacity: 0;
+    z-index: 1;
+    pointer-events: none; /* Make them unclickable */
+}
+
+
+.case-card h3 {
+    font-family: var(--font-heading);
+    color: var(--color-primary-dark);
+    margin-bottom: 1rem;
+}
+
+.case-card p {
+    font-size: 0.9rem;
+    color: var(--bs-secondary-text);
+}
+
+.case-selector-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.case-selector-nav button {
+    margin: 0 10px;
+}
+
+/* MODULE 2: INTERACTIVE LIUREN BOARD */
+#board-container {
+    background-color: var(--bs-light);
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: var(--bs-box-shadow-sm);
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.liuren-board-svg {
+    width: 100%;
+    height: auto;
+    font-family: var(--bs-font-sans-serif);
+    margin-bottom: 1rem;
+    border-radius: var(--bs-border-radius);
+    padding: 0.5rem;
+}
+
+.liuren-board-svg .plate-circle,
+.liuren-board-svg .plate-circle-outer {
+    fill: none;
+    stroke: var(--bs-secondary-color);
+    stroke-width: 0.5px;
+}
+
+.liuren-board-svg .plate-circle-outer {
+    stroke-width: 1px;
+}
+
+.liuren-board-svg text {
+    fill: var(--bs-body-color);
+    font-size: 10px;
+}
+
+.liuren-board-svg .general {
+    font-weight: bold;
+    fill: var(--bs-dark);
+}
+
+.liuren-board-svg .lesson,
+.liuren-board-svg .transmission {
+    transition: all 0.3s ease-in-out;
+}
+
+.liuren-board-svg .lesson rect {
+    fill: rgba(0, 0, 0, 0.02);
+    stroke: var(--bs-border-color);
+    stroke-width: 0.8px;
+    rx: 4;
+}
+
+.liuren-board-svg .lesson-shen,
+.liuren-board-svg .transmission-shen {
+    font-weight: bold;
+    font-size: 14px;
+    fill: var(--bs-dark);
+}
+
+.liuren-board-svg .lesson-ganzhi,
+.liuren-board-svg .transmission-zhi {
+    font-size: 14px;
+    fill: var(--bs-body-color);
+}
+
+.liuren-board-svg .lesson-type,
+.liuren-board-svg .lesson-relation,
+.liuren-board-svg .transmission-type {
+    font-size: 9px;
+    fill: var(--bs-secondary-color);
+}
+
+/* Highlighting and Dimming */
+.liuren-board-svg .dimmed {
+    opacity: 0.25;
+}
+
+.liuren-board-svg .highlight {
+    opacity: 1;
+}
+
+.liuren-board-svg .highlight rect {
+    stroke: var(--bs-danger);
+    stroke-width: 1.5px;
+    fill: rgba(var(--bs-danger-rgb), 0.1);
+}
+
+.liuren-board-svg .highlight text {
+    fill: var(--bs-danger);
+}
+
+/* MODULE 3: GUIDED ANALYSIS */
+#analysis-steps-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.analysis-step {
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--bs-border-radius);
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--bs-white);
+    opacity: 0.5; /* Hidden by default */
+    transform: translateY(10px);
+}
+
+.analysis-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.analysis-step .step-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.analysis-step .step-number {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--bs-gray-400);
+    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.analysis-step .step-title {
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.analysis-step .step-details-icon {
+    font-size: 1.2rem;
+    color: var(--bs-gray-500);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.analysis-step .step-details-icon:hover {
+    color: var(--bs-primary);
+    transform: scale(1.2);
+}
+
+.analysis-step .step-status-icon {
+    font-size: 1.5rem;
+    color: var(--bs-gray-300);
+    transition: color 0.3s ease;
+}
+
+/* Active State */
+.analysis-step.active {
+    border-color: var(--bs-primary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: var(--bs-primary-bg-subtle);
+}
+
+.analysis-step.active .step-number {
+    background-color: var(--bs-primary);
+}
+
+/* Completed State */
+.analysis-step.completed {
+    border-color: var(--bs-success);
+    background-color: var(--bs-success-bg-subtle);
+}
+
+.analysis-step.completed .step-number {
+    background-color: var(--bs-success);
+}
+
+.analysis-step.completed .step-status-icon {
+    color: var(--bs-success);
+}
+
+.analysis-step:not(.active):not(.completed):hover {
+    border-color: var(--bs-gray-500);
+    transform: translateY(-2px);
+}
+
+.outcome-container {
+    padding: 1rem;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    margin-top: 1rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.outcome-blurred {
+    filter: blur(5px);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
+.outcome-container.unlocked {
+    filter: none;
+    cursor: default;
+}
+
+#unlock-outcome-btn:disabled {
+    background-color: var(--bs-gray-500);
+    cursor: not-allowed;
+}
+
+/* --- New Board Styles --- */
+
+#liuren-board-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "meta meta"
+        "plates lessons"
+        "plates transmissions"
+        "plates shas";
+    gap: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.board-section {
+    border: 1px solid var(--bs-gray-300);
+    padding: 1rem;
+    border-radius: var(--bs-border-radius);
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#board-meta {
+    grid-area: meta;
+    padding: 0.75rem 1rem;
+    background-color: rgba(0,0,0,0.03);
+    border-bottom: 2px solid var(--bs-gray-300);
+}
+
+#board-plates {
+    grid-area: plates;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+}
+
+#board-lessons {
+    grid-area: lessons;
+}
+
+#board-transmissions {
+    grid-area: transmissions;
+}
+
+#board-shas {
+    grid-area: shas;
+}
+
+.board-section-title {
+    font-family: var(--font-heading);
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--bs-primary);
+    padding-bottom: 0.5rem;
+    color: var(--bs-dark);
+}
+
+/* SVG Plate Styles */
+.liuren-board-svg {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    font-family: var(--font-body);
+}
+
+.plate-circle, .plate-circle-outer {
+    fill: none;
+    stroke: var(--bs-gray-400);
+    stroke-width: 1px;
+}
+
+.plate-circle-outer {
+    stroke-width: 2px;
+    stroke: var(--bs-gray-600);
+}
+
+.plate-group text {
+    font-size: 14px;
+    fill: var(--bs-dark);
+}
+
+.heavenly-generals .general {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: bold;
+    fill: var(--bs-primary);
+}
+
+
+/* Lessons & Transmissions Styles */
+.lessons-content, .transmissions-content {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.lesson-item, .transmission-item {
+    padding: 0.5rem;
+    width: 24%;
+}
+
+.lesson-item {
+    border: 1px solid var(--bs-gray-200);
+    border-radius: var(--bs-border-radius-sm);
+}
+
+.lesson-shen, .transmission-shen {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--bs-primary);
+}
+
+.lesson-ganzhi, .transmission-zhi {
+    font-size: 1.1rem;
+    margin: 0.25rem 0;
+}
+
+.lesson-relation, .transmission-type {
+    font-size: 0.9rem;
+    color: var(--bs-gray-600);
+}
+
+/* --- Tooltip Styles --- */
+.board-tooltip {
+    position: fixed;
+    z-index: 1080; /* Higher than most elements, including Bootstrap's navbar */
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border-radius: var(--bs-border-radius-sm);
+    font-size: 0.9rem;
+    pointer-events: none; /* So it doesn't interfere with mouse events on other elements */
+    transition: opacity 0.2s ease-in-out;
+    max-width: 250px;
+    text-align: left;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* --- Highlight Styles --- */
+.highlighted {
+    transition: all 0.2s ease-in-out;
+}
+
+/* For SVG text elements */
+.plate-group .highlighted {
+    fill: var(--bs-danger);
+    font-weight: bold;
+    text-shadow: 0 0 5px var(--bs-warning);
+}
+
+/* For HTML div elements */
+.lesson-item.highlighted {
+    background-color: var(--bs-warning-bg-subtle);
+    border-color: var(--bs-warning);
+    box-shadow: 0 0 8px var(--bs-warning-border-subtle);
+}
+
+/* --- Sha Styles --- */
+.shas-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem 1rem;
+}
+
+.sha-item {
+    padding: 0.25rem 0.75rem;
+    border: 1px solid var(--bs-gray-300);
+    border-radius: var(--bs-border-radius);
+    background-color: var(--bs-light);
+    font-size: 0.9rem;
+    cursor: default;
+    transition: all 0.2s ease;
+}
+
+.sha-item:hover {
+    background-color: var(--bs-primary-bg-subtle);
+    border-color: var(--bs-primary-border-subtle);
+    color: var(--bs-primary);
+}
+
+/* --- Meta Styles --- */
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.meta-grid strong {
+    color: var(--bs-dark);
+    margin-right: 0.5em;
+}
+
+.step-principle {
+    margin-top: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--bs-secondary-bg-subtle);
+    border: 1px solid var(--bs-secondary-border-subtle);
+    border-radius: var(--bs-border-radius-pill);
+    font-size: 0.8rem;
+    color: var(--bs-secondary-text-emphasis);
+    display: inline-block;
+    cursor: help;
+    transition: all 0.2s ease;
+}
+
+.step-principle:hover {
+    background-color: var(--bs-secondary);
+    color: var(--bs-white);
+    border-color: var(--bs-secondary);
+}
+
+.step-details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, margin-top 0.5s ease-out;
+    margin-top: 0;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--bs-dark);
+}
+
+.analysis-step.details-visible .step-details-content {
+    max-height: 1000px; /* Arbitrary large value to allow expansion */
+    margin-top: 1rem;
+    transition: max-height 1s ease-in, margin-top 0.5s ease-in;
+} 

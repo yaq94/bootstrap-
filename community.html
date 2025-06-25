@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>社区交流中心 - 大六壬知识科普网站</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/community.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">大六壬知识科普</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" id="nav-index" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-intro" href="intro.html">基础入门</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-deities" href="deities.html">神将释义</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-cases" href="cases.html">经典课例</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-divination" href="divination.html">在线排盘</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-books" href="books.html">古籍典藏</a></li>
+                        <li class="nav-item"><a class="nav-link active" id="nav-community" href="community.html">社区交流</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container my-5">
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="page-title-box">
+                    <h1 class="text-center display-4">社区交流中心</h1>
+                    <p class="text-center text-muted lead">在这里，思想碰撞，智慧生辉。参与讨论，分享见解，共同进步。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 1: "问道石" (The Seeking Stone) - Interactive Q&A Board -->
+        <section id="qa-board" class="community-module mb-5"></section>
+
+        <!-- Module 2: "论道场" (The Forum Arena) - Themed Discussion Threads -->
+        <section id="forum-arena" class="community-module mb-5"></section>
+        
+        <!-- Module 3: "众说纷纭" (Diverse Opinions) - Poll & Results Visualization -->
+        <section id="poll-station" class="community-module mb-5"></section>
+
+        <!-- Module 4: "同好风采" (Member Spotlight) - Profile Showcase Carousel -->
+        <section id="member-spotlight" class="community-module mb-5"></section>
+        
+        <!-- Module 5: "奇门遁甲" (Mystical Gates) - Interactive Event Calendar -->
+        <section id="event-calendar" class="community-module mb-5"></section>
+
+        <!-- Module 6: "畅所欲言" (User Comments) -->
+        <section id="user-comments" class="community-module mb-5"></section>
+
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <div class="container">
+            <p>&copy; 2025 大六壬知识科普网站. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/community.js"></script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="thread-modal" tabindex="-1" aria-labelledby="thread-modal-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="thread-modal-label">帖子详情</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>帖子内容正在紧张建设中，敬请期待！</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

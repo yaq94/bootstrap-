@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>经典课例 - 大六壬知识科普</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cases.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">大六壬知识科普</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" id="nav-index" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-intro" href="intro.html">基础入门</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-deities" href="deities.html">神将释义</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-cases" href="cases.html">经典课例</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-divination" href="divination.html">在线排盘</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-books" href="books.html">古籍典藏</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-community" href="community.html">留言交流</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-5">
+        <div class="text-center mb-5">
+            <h1 class="display-4">经典课例</h1>
+            <p class="lead text-muted">沉浸式复盘，学习六壬的断案精髓</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-5">
+                <!-- MODULE 1: CASE SELECTOR -->
+                <section id="case-selector" class="mb-5">
+                    <h2 class="mb-4 text-center">选择案卷</h2>
+                    <div class="case-selector-container">
+                        <!-- JS will populate case cards here -->
+                        <div class="case-card-placeholder">
+                            <p>正在加载课例...</p>
+                        </div>
+                        <div class="case-selector-nav">
+                            <button id="prev-case" class="btn btn-outline-secondary">&larr; 上一案</button>
+                            <button id="next-case" class="btn btn-outline-secondary">下一案 &rarr;</button>
+                        </div>
+                    </div>
+                </section>
+                <!-- MODULE 3: GUIDED ANALYSIS -->
+                <section id="guided-analysis" class="mb-5 d-none">
+                    <h2 class="mb-4 text-center">引导式分析</h2>
+                    <div id="analysis-steps-container">
+                        <!-- Analysis steps will be populated here by JS -->
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-7">
+                <div id="case-content-area" class="d-none">
+                    <!-- MODULE 2: INTERACTIVE BOARD -->
+                    <section id="interactive-board" class="mb-5">
+                        <h2 class="mb-4 text-center">课盘沙盘</h2>
+                        <div id="liuren-board-container" class="border rounded">
+                            <div id="board-meta" class="board-section"></div>
+                            <div id="board-plates" class="board-section"></div>
+                            <div id="board-lessons" class="board-section"></div>
+                            <div id="board-transmissions" class="board-section"></div>
+                            <div id="board-shas" class="board-section"></div>
+                        </div>
+                    </section>
+        
+                    <!-- MODULE 4: BLURRED OUTCOME -->
+                    <section id="blurred-outcome" class="mb-5">
+                        <h2 class="mb-4 text-center">断案结局</h2>
+                        <div id="outcome-container" class="outcome-container p-4 border rounded">
+                            <div id="outcome-text">
+                                <!-- Outcome will be rendered here -->
+                            </div>
+                        </div>
+                        <button id="unlock-outcome-btn" class="btn btn-danger w-100 mt-3">请先完成所有分析步骤</button>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="board-tooltip" class="board-tooltip" style="display: none;"></div>
+
+    <footer class="bg-dark text-white text-center p-3">
+        <div class="container">
+            <p>&copy; 2025 大六壬知识科普网站. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/board-renderer.js"></script>
+    <script src="js/tooltip-data.js"></script>
+    
+    <script>
+    // All logic from cases.js is now embedded here to bypass caching issues.
+    document.addEventListener('DOMContentLoaded', () => {
+        const caseSelectorContainer = document.querySelector('.case-selector-container');
+        const placeholder = document.querySelector('.case-card-placeholder');
+        const prevCaseBtn = document.getElementById('prev-case');
+        const nextCaseBtn = document.getElementById('next-case');
+        const caseContentArea = document.getElementById('case-content-area');
+        const guidedAnalysisSection = document.getElementById('guided-analysis');
+        const unlockBtn = document.getElementById('unlock-outcome-btn');
+        const outcomeContainer = document.getElementById('outcome-container');
+        const outcomeTextEl = document.getElementById('outcome-text');
+        const tooltipEl = document.getElementById('board-tooltip');
+
+        let allCases = [];
+        let currentIndex = -1;
+        let analysisProgress = {
+            currentStep: 0,
+            totalSteps: 0,
+            isCompleted: false
+        };
+        let analysisDetails = {}; // To store the detailed content
+
+        async function initialLoad() {
+            try {
+                const [casesResponse, detailsResponse] = await Promise.all([
+                    fetch('data/cases.json'),
+                    fetch('data/analysis_details.json')
+                ]);
+
+                if (!casesResponse.ok) throw new Error(`HTTP error! status: ${casesResponse.status} for cases.json`);
+                if (!detailsResponse.ok) throw new Error(`HTTP error! status: ${detailsResponse.status} for analysis_details.json`);
+                
+                const casesData = await casesResponse.json();
+                analysisDetails = await detailsResponse.json();
+                
+                allCases = casesData.cases;
+
+                if (allCases.length > 0) {
+                    if(placeholder) placeholder.remove();
+                    createCaseCards();
+                    displayCase(currentIndex);
+                } else {
+                    if(placeholder) placeholder.innerHTML = '<p>没有可用的课例。</p>';
+                }
+            } catch (error) {
+                console.error("无法加载课例数据:", error);
+                if (placeholder) {
+                    placeholder.innerHTML = `<p class="text-danger">加载课例失败，请检查文件或网络连接。</p>`;
+                }
+            }
+        }
+
+        function createCaseCards() {
+            caseSelectorContainer.querySelectorAll('.case-card').forEach(card => card.remove());
+            caseSelectorContainer.querySelector('.case-selector-nav').insertAdjacentHTML('beforebegin', 
+                allCases.map((caseData, index) => `
+                    <div class="case-card" data-index="${index}">
+                        <h3>${caseData.title}</h3>
+                        <p>${caseData.description}</p>
+                    </div>
+                `).join('')
+            );
+            updateCarousel();
+        }
+        
+        function displayCase(index) {
+            currentIndex = index;
+            updateCarousel();
+
+            const caseData = allCases[index];
+            if (!caseData) return;
+            
+            // Reset analysis progress for the new case
+            analysisProgress.currentStep = 0;
+            analysisProgress.totalSteps = caseData.analysis_steps.length;
+            analysisProgress.isCompleted = false;
+
+            console.log("Loading content for:", caseData.title);
+            caseContentArea.classList.remove('d-none');
+            guidedAnalysisSection.classList.remove('d-none');
+            
+            renderLiurenBoard(caseData.liuren_board, 'liuren-board-container');
+            renderAnalysisSteps(caseData.analysis_steps);
+            updateAnalysisStepsView(); // Set initial view
+            renderOutcome(caseData.outcome);
+
+            outcomeContainer.classList.add('outcome-blurred');
+            unlockBtn.disabled = true;
+            unlockBtn.textContent = '请先完成所有分析步骤';
+            unlockBtn.style.display = 'block';
+
+            caseContentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function updateCarousel() {
+            const cards = document.querySelectorAll('.case-card');
+            cards.forEach((card, index) => {
+                card.classList.remove('active', 'prev', 'next', 'hidden');
+                if (index === currentIndex) card.classList.add('active');
+                else if (index === (currentIndex - 1 + allCases.length) % allCases.length) card.classList.add('prev');
+                else if (index === (currentIndex + 1) % allCases.length) card.classList.add('next');
+                else card.classList.add('hidden');
+            });
+        }
+
+        function renderAnalysisSteps(steps) {
+            const container = document.getElementById('analysis-steps-container');
+            container.innerHTML = ''; // Clear previous steps
+
+            if (!steps || steps.length === 0) {
+                container.innerHTML = '<p class="text-muted">此课例暂无引导式分析。</p>';
+                return;
+            }
+
+            steps.forEach((step, index) => {
+                const stepEl = document.createElement('div');
+                stepEl.className = 'analysis-step'; // Base class
+                stepEl.dataset.stepIndex = index; // Store index for reference
+                stepEl.dataset.idRef = step.id_ref;
+
+                stepEl.innerHTML = `
+                    <div class="step-header">
+                        <span class="step-number">${index + 1}</span>
+                        <h5 class="step-title mb-0">${step.text}</h5>
+                        <i class="bi bi-plus-circle step-details-icon"></i>
+                        <i class="bi bi-check-circle-fill step-status-icon"></i>
+                    </div>
+                    ${step.principle ? `<div class="step-principle" data-tooltip-key="${step.principle}">${step.principle}</div>` : ''}
+                    <div class="step-details-content">
+                        ${analysisDetails[step.details_key] || '<p class="text-muted">暂无详细说明。</p>'}
+                    </div>
+                `;
+                container.appendChild(stepEl);
+            });
+        }
+        
+        function updateAnalysisStepsView() {
+            const steps = document.querySelectorAll('.analysis-step');
+            steps.forEach((step, index) => {
+                step.classList.remove('visible', 'active', 'completed');
+
+                if (index < analysisProgress.currentStep) {
+                    step.classList.add('visible', 'completed');
+                } else if (index === analysisProgress.currentStep) {
+                    step.classList.add('visible', 'active');
+                    // Highlight elements for the current step automatically
+                    const idRefs = step.dataset.idRef ? [step.dataset.idRef] : [];
+                    highlightBoardElements(idRefs);
+                }
+            });
+            checkCompletion();
+        }
+
+        function highlightBoardElements(elementIds) {
+            const allBoardElements = document.querySelectorAll('#liuren-board-container [id]');
+            allBoardElements.forEach(el => el.classList.remove('highlighted'));
+
+            if (!elementIds || elementIds.length === 0) return;
+
+            elementIds.forEach(id => {
+                const elementsToReveal = document.querySelectorAll(`[data-reveals*='"${id}"']`);
+                elementsToReveal.forEach(el => el.classList.add('highlighted'));
+                
+                const targetElement = document.getElementById(id);
+                if(targetElement) targetElement.classList.add('highlighted');
+            });
+        }
+        
+        function checkCompletion() {
+            analysisProgress.isCompleted = analysisProgress.currentStep >= analysisProgress.totalSteps;
+            if (analysisProgress.isCompleted) {
+                unlockBtn.disabled = false;
+                unlockBtn.textContent = '所有步骤已阅，可揭晓结局';
+                highlightBoardElements([]); // Clear highlights on completion
+            } else {
+                unlockBtn.disabled = true;
+                unlockBtn.textContent = '请先完成所有分析步骤';
+            }
+        }
+
+        function renderOutcome(outcome) {
+            outcomeTextEl.innerHTML = `<h4>占断结果</h4><p>${outcome}</p>`;
+        }
+        
+        prevCaseBtn.addEventListener('click', () => {
+            displayCase((currentIndex - 1 + allCases.length) % allCases.length);
+        });
+
+        nextCaseBtn.addEventListener('click', () => {
+            displayCase((currentIndex + 1) % allCases.length);
+        });
+
+        caseSelectorContainer.addEventListener('click', (e) => {
+            const card = e.target.closest('.case-card');
+            if (card && card.dataset.index) {
+                displayCase(parseInt(card.dataset.index, 10));
+            }
+        });
+
+        document.getElementById('analysis-steps-container').addEventListener('click', (e) => {
+            const clickedStep = e.target.closest('.analysis-step');
+            if (!clickedStep) return;
+
+            // Handle details toggle
+            if (e.target.classList.contains('step-details-icon')) {
+                clickedStep.classList.toggle('details-visible');
+                const icon = e.target;
+                icon.classList.toggle('bi-plus-circle');
+                icon.classList.toggle('bi-dash-circle');
+                return; // Stop further execution
+            }
+
+            // Handle step progression
+            if (!clickedStep.classList.contains('active')) {
+                return; // Only active step can progress
+            }
+
+            if(analysisProgress.currentStep < analysisProgress.totalSteps) {
+                analysisProgress.currentStep++;
+                updateAnalysisStepsView();
+            }
+        });
+
+        unlockBtn.addEventListener('click', () => {
+            outcomeContainer.classList.remove('outcome-blurred');
+            unlockBtn.style.display = 'none';
+        });
+
+        // --- Tooltip Logic ---
+        function setupTooltip() {
+            const boardContainer = document.getElementById('liuren-board-container');
+            if (!boardContainer || !tooltipEl) return;
+
+            const handleMouseOver = (event) => {
+                const tooltipTarget = event.target.closest('[data-tooltip-key]');
+                const highlightTarget = event.target.closest('[data-reveals]');
+
+                // Handle Tooltip
+                if (tooltipTarget) {
+                    const key = tooltipTarget.getAttribute('data-tooltip-key');
+                    if (key && tooltipData[key]) {
+                        tooltipEl.innerHTML = tooltipData[key];
+                        tooltipEl.style.display = 'block';
+                    }
+                }
+
+                // Handle Highlighting
+                if (highlightTarget) {
+                    try {
+                        const idsToReveal = JSON.parse(highlightTarget.getAttribute('data-reveals'));
+                        idsToReveal.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.classList.add('highlighted');
+                        });
+                    } catch (e) {
+                        console.error('Error parsing data-reveals attribute', e);
+                    }
+                }
+            };
+
+            const handleMouseOut = (event) => {
+                const tooltipTarget = event.target.closest('[data-tooltip-key]');
+                const highlightTarget = event.target.closest('[data-reveals]');
+
+                if (tooltipTarget) {
+                    hideTooltip();
+                }
+                if (highlightTarget) {
+                     try {
+                        const idsToReveal = JSON.parse(highlightTarget.getAttribute('data-reveals'));
+                        idsToReveal.forEach(id => {
+                            const el = document.getElementById(id);
+                            if (el) el.classList.remove('highlighted');
+                        });
+                    } catch (e) {
+                        // silent error
+                    }
+                }
+            };
+
+            const moveTooltip = (event) => {
+                if (tooltipEl.style.display === 'block') {
+                    let x = event.clientX + 15;
+                    let y = event.clientY + 15;
+
+                    if (x + tooltipEl.offsetWidth > window.innerWidth) {
+                        x = event.clientX - tooltipEl.offsetWidth - 15;
+                    }
+                    if (y + tooltipEl.offsetHeight > window.innerHeight) {
+                        y = event.clientY - tooltipEl.offsetHeight - 15;
+                    }
+
+                    tooltipEl.style.left = `${x}px`;
+                    tooltipEl.style.top = `${y}px`;
+                }
+            };
+
+            const hideTooltip = () => {
+                tooltipEl.style.display = 'none';
+            };
+
+            boardContainer.addEventListener('mouseover', handleMouseOver);
+            boardContainer.addEventListener('mouseout', handleMouseOut);
+            boardContainer.addEventListener('mousemove', moveTooltip);
+        }
+
+        // Initialize everything
+        initialLoad();
+        setupTooltip();
+    });
+    </script>
+</body>
+</html> 

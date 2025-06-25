@@ -1,0 +1,635 @@
+/* CSS for intro.html */ 
+
+/* Entrance Animation: Unfurling Scroll */
+@keyframes unfurl {
+    0% {
+        clip-path: inset(0 50% 0 50%);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.scroll-reveal-wrapper {
+    animation: unfurl 1s cubic-bezier(0.77, 0, 0.175, 1) 0.5s forwards;
+    /* Start with the final state to avoid flicker */
+    clip-path: inset(0 50% 0 50%);
+}
+
+.scroll-reveal-content {
+    /* The actual content starts invisible and fades in after the unfurl */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-in 1.5s forwards;
+}
+
+/* Custom styles for the intro page tab component */
+#components-tabs .nav-tabs {
+    border-bottom: 2px solid var(--ink-gray-light);
+}
+
+#components-tabs .nav-link {
+    color: var(--ink-gray);
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.8rem 1.5rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    margin: 0 5px;
+}
+
+#components-tabs .nav-link:hover,
+#components-tabs .nav-link:focus {
+    color: var(--ink-black);
+    border-bottom-color: var(--ink-gray);
+}
+
+#components-tabs .nav-link.active {
+    color: var(--seal-red);
+    background-color: transparent;
+    border-bottom: 2px solid var(--seal-red);
+    font-weight: bold;
+}
+
+#components-tabs .tab-content {
+    background-color: #fdfdfa; /* A very light off-white, like clean rice paper */
+    padding: 2rem;
+    border: 1px solid var(--ink-gray-light);
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Custom styles for the history timeline */
+#timeline-container {
+    padding: 2rem 0;
+}
+
+.timeline-nav-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.timeline-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 600px;
+}
+
+.timeline-dot {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 3px solid var(--ink-gray-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    font-size: 1.5rem;
+    color: var(--ink-gray);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-dot.active {
+    border-color: var(--seal-red);
+    color: var(--seal-red);
+    transform: scale(1.1);
+}
+
+.timeline-line {
+    flex-grow: 1;
+    height: 3px;
+    background-color: var(--ink-gray-light);
+    margin: 0 -2px; /* Overlap slightly with dots */
+    z-index: 1;
+}
+
+.timeline-content .timeline-pane {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.timeline-content .timeline-pane.active {
+    display: block;
+    opacity: 1;
+}
+
+/* Updated styles for 3D flip-card effect */
+.application-card-wrapper {
+    perspective: 1000px;
+    height: 220px;
+}
+
+.application-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.application-card-wrapper:hover .application-card {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid var(--ink-gray-light);
+    border-radius: .25rem;
+    background-color: #fdfdfa;
+}
+
+.card-front {
+    color: var(--ink-black);
+}
+
+.card-front .bi {
+     color: var(--seal-red);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    color: var(--ink-black);
+}
+
+/* Custom styles for the WuXing SVG interactive diagram */
+#wuxing-svg {
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+#wuxing-svg .element-node circle {
+    fill: #fdfdfa;
+    stroke: var(--ink-gray-light);
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+#wuxing-svg .element-node text {
+    font-size: 1.2rem;
+    text-anchor: middle;
+    dominant-baseline: middle;
+    fill: var(--ink-gray);
+    pointer-events: none; /* Make text unclickable */
+}
+
+#wuxing-svg .element-node {
+    cursor: pointer;
+}
+
+/* --- SVG Path Styling (Definitive Fix) --- */
+/* 1. Define the base style and transition for ALL paths. */
+#wuxing-svg .sheng-cycle,
+#wuxing-svg .ke-cycle {
+    stroke-width: 2.5px;
+    stroke: #b0b0b0; /* A neutral, faint grey for inactive paths */
+    opacity: 0.3;
+    transition: opacity 0.4s ease-in-out, stroke 0.4s ease-in-out, stroke-width 0.4s ease-in-out;
+}
+
+/* 2. Define the visual style for an ACTIVE sheng path. */
+#wuxing-svg path.sheng-active {
+    stroke: var(--color-sheng, #28a745); /* Green with fallback */
+    opacity: 1;
+    stroke-width: 4px;
+}
+
+/* 3. Define the visual style for an ACTIVE ke path. */
+#wuxing-svg path.ke-active {
+    stroke: var(--color-ke, #dc3545); /* Red with fallback */
+    opacity: 1;
+    stroke-width: 4px;
+}
+
+/* Hover/Active states */
+#wuxing-svg.highlight-active .element-node:not(.highlight) {
+    opacity: 0.3;
+}
+
+#wuxing-svg .element-node.highlight circle {
+    stroke: var(--seal-red);
+    stroke-width: 4;
+}
+#wuxing-svg.highlight-active path:not(.highlight) {
+    opacity: 0.1;
+}
+
+#wuxing-svg path.highlight {
+    opacity: 1;
+    stroke-width: 5;
+}
+
+#wuxing-explanation .wuxing-text-pane {
+    display: none;
+}
+
+#wuxing-explanation .sheng-color {
+    color: #28a745;
+}
+
+#wuxing-explanation .ke-color {
+    color: #dc3545;
+}
+
+/* Custom styles for conclusion buttons with ink trail effect */
+.conclusion-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.conclusion-btn .ink-trail {
+    position: absolute;
+    display: block;
+}
+
+.conclusion-btn .ink-trail::before,
+.conclusion-btn .ink-trail::after {
+    content: '';
+    position: absolute;
+    background: var(--seal-red);
+    transition: all 0.4s ease;
+}
+
+.conclusion-btn:hover {
+    color: var(--seal-red) !important; /* Force color change on hover */
+}
+.btn-outline-dark.conclusion-btn:hover {
+    background: transparent;
+    border-color: var(--ink-gray-light);
+}
+
+/* top and bottom trails */
+.conclusion-btn .ink-trail::before {
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+}
+.conclusion-btn:hover .ink-trail::before {
+    width: 100%;
+}
+
+/* right and left trails */
+.conclusion-btn .ink-trail::after {
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+}
+.conclusion-btn:hover .ink-trail::after {
+    width: 100%;
+}
+
+.conclusion-btn span:not(.ink-trail)::before,
+.conclusion-btn span:not(.ink-trail)::after {
+    content: '';
+    position: absolute;
+    background: var(--seal-red);
+    transition: all 0.4s ease;
+}
+
+/* right and left trails */
+.conclusion-btn span:not(.ink-trail)::before {
+    top: 0;
+    right: 0;
+    width: 2px;
+    height: 0;
+}
+.conclusion-btn:hover span:not(.ink-trail)::before {
+    height: 100%;
+}
+
+.conclusion-btn span:not(.ink-trail)::after {
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+}
+.conclusion-btn:hover span:not(.ink-trail)::after {
+    height: 100%;
+}
+
+/* Styles for the interactive fan component - replacing the old tab styles */
+#fan-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Align handles at the bottom */
+    height: 400px; /* Container height to allow fans to open upwards */
+    position: relative;
+    margin-top: 2rem;
+}
+
+.fan-item {
+    position: relative;
+    margin: 0 -20px; /* Overlap items slightly */
+    z-index: 1;
+}
+
+.fan-handle {
+    width: 120px;
+    padding: 15px 10px;
+    background-color: var(--ink-gray-dark);
+    color: #fdfdfa;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 3;
+}
+
+.fan-handle h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.fan-face {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    width: 450px;
+    height: 450px;
+    background-image: url('https://www.transparenttextures.com/patterns/rice-paper-3.png'), linear-gradient(to top, #fdfdfa, #f8f8f0);
+    background-blend-mode: overlay;
+    border: 2px solid var(--ink-gray);
+    border-radius: 50%;
+    
+    clip-path: circle(0% at 50% 100%);
+    transform: translateX(-50%) scale(0.5);
+    transform-origin: bottom center;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    overflow: hidden;
+    
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fan-content {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.3s;
+    overflow-y: auto;
+    padding: 120rem 5% 120rem 5%;
+}
+
+/* Custom Scrollbar for fan content */
+.fan-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.fan-content::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+.fan-content::-webkit-scrollbar-thumb {
+  background: var(--ink-gray-light); 
+  border-radius: 10px;
+}
+
+.fan-content::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-gray); 
+}
+
+/* Open state */
+.fan-item.open .fan-face {
+    clip-path: circle(75% at 50% 100%);
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.fan-item.open .fan-content {
+    opacity: 1;
+}
+
+.fan-item.open .fan-handle {
+    background-color: var(--seal-red);
+    transform: translateY(10px);
+}
+
+/* Adjust z-index on hover/open */
+.fan-item:hover {
+    z-index: 10;
+}
+.fan-item.open {
+    z-index: 11;
+}
+
+/* New styles for the vertical scroll timeline */
+#scroll-timeline-container {
+    display: flex;
+    gap: 2rem;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline-axis {
+    flex: 0 0 50px;
+    position: sticky;
+    top: 150px; /* Stick after navbar */
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.timeline-axis .axis-line {
+    position: absolute;
+    height: 100%;
+    width: 3px;
+    background-color: var(--ink-gray-light);
+    z-index: -1;
+}
+
+.timeline-axis .axis-dot {
+    width: 45px;
+    height: 45px;
+    background-color: #fff;
+    border: 3px solid var(--ink-gray-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    font-size: 1.3rem; /* Slightly reduced font size */
+    color: var(--ink-gray);
+    transition: all 0.4s ease;
+    cursor: default;
+}
+
+.timeline-axis .axis-dot.is-active {
+    background-color: var(--seal-red);
+    color: #fff;
+    border-color: var(--seal-red);
+    transform: scale(1.1);
+}
+
+.timeline-content-scroll {
+    flex-grow: 1;
+}
+
+.timeline-pane-scroll {
+    padding: 1rem 1rem 4rem 1rem; /* Add bottom padding to ensure next one triggers */
+    border-left: 3px solid transparent;
+    opacity: 0.3;
+    transform: translateX(20px);
+    transition: all 0.5s ease-out;
+}
+
+.timeline-pane-scroll.is-active {
+    opacity: 1;
+    transform: translateX(0);
+    border-left-color: var(--seal-red);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    /* Stack the scroll timeline on mobile */
+    #scroll-timeline-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .timeline-axis {
+        position: static; /* Un-stick the axis */
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        justify-content: space-around;
+    }
+
+    .timeline-axis .axis-line {
+        width: 100%;
+        height: 3px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .timeline-pane-scroll {
+        border-left: none;
+        padding-left: 0;
+        transform: translateX(0); /* Reset transform */
+    }
+
+    .timeline-pane-scroll.is-active {
+        border-top: 3px solid var(--seal-red);
+        padding-top: 1rem;
+    }
+
+    /* Stack the fans on mobile */
+    #fan-container {
+        flex-direction: column;
+        height: auto;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .fan-item {
+        margin: 0;
+        width: 90%;
+    }
+
+    .fan-handle {
+        width: 100%;
+    }
+
+    .fan-face {
+        width: 100%;
+        height: auto; /* Auto height for mobile */
+        padding: 2rem 1rem; /* Adjust padding for mobile */
+        position: static; /* Un-absolute the face */
+        transform: none !important; /* Reset transform */
+        clip-path: none !important; /* Reset clip-path */
+        border-radius: 0 0 10px 10px;
+        background-image: url('https://www.transparenttextures.com/patterns/rice-paper-3.png'), linear-gradient(to top, #fdfdfa, #f8f8f0);
+        display: none; /* Hide by default */
+        opacity: 1; /* Reset opacity */
+    }
+
+    .fan-item.open .fan-face {
+        display: block; /* Show on open */
+    }
+     .fan-item.open .fan-handle {
+        transform: none; /* Reset handle transform */
+    }
+
+    .fan-content {
+        opacity: 1; /* Always visible on mobile when open */
+    }
+} 
+
+/* --- New Styles for Wuxing Info Panel and Controls --- */
+
+#wuxing-info-panel {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    min-height: 300px;
+    transition: all 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+#wuxing-info-panel.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+#wuxing-info-panel h4 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: var(--color-primary-dark);
+    border-bottom: 2px solid var(--color-accent);
+    padding-bottom: 0.5rem;
+}
+
+#wuxing-controls .btn {
+    transition: all 0.3s ease;
+    border-radius: 0 !important;
+}
+
+#wuxing-controls .btn.active {
+    background-color: var(--color-primary-dark);
+    color: var(--color-light);
+    box-shadow: 0 0 10px var(--color-accent);
+    transform: translateY(-2px);
+}
+
+#wuxing-controls .btn:not(.active):hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+} 

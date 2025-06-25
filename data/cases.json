@@ -1,0 +1,107 @@
+{
+  "cases": [
+    {
+      "id": "case-001",
+      "title": "邵彦和占雨（一）",
+      "description": "《六壬神定经》中的经典案例，展示了如何从课象中精准判断天气变化。",
+      "liuren_board": {
+        "meta": {
+          "subject": "占雨",
+          "datetime": "庚子日 甲申时",
+          "month_general": "登明 (亥)",
+          "day_void": "辰、巳",
+          "shas": ["禄神", "德", "天喜", "驿马"]
+        },
+        "earthly_plate": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+        "heavenly_plate": ["申", "酉", "戌", "亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未"],
+        "heavenly_generals": ["勾", "合", "朱", "蛇", "贵", "后", "阴", "玄", "常", "虎", "龙", "青"],
+        "lessons": [
+          {"id": "lesson-1", "gan": "庚", "zhi": "子", "shen": "玄", "reveals": ["heaven-plate-申", "earth-plate-庚"]},
+          {"id": "lesson-2", "gan": "庚", "zhi": "子", "shen": "玄", "reveals": ["heaven-plate-申", "earth-plate-子"]},
+          {"id": "lesson-3", "gan": "申", "zhi": "辰", "shen": "勾", "reveals": ["heaven-plate-辰", "earth-plate-申"]},
+          {"id": "lesson-4", "gan": "申", "zhi": "辰", "shen": "勾", "reveals": ["heaven-plate-辰", "earth-plate-辰"]}
+        ],
+        "transmissions": [
+          {"id": "transmission-1", "type": "初传", "zhi": "辰", "shen": "勾", "reveals": ["heaven-plate-辰", "earth-plate-辰"]},
+          {"id": "transmission-2", "type": "中传", "zhi": "子", "shen": "玄", "reveals": ["heaven-plate-申", "earth-plate-子"]},
+          {"id": "transmission-3", "type": "末传", "zhi": "申", "shen": "青", "reveals": ["heaven-plate-寅", "earth-plate-申"]}
+        ]
+      },
+      "analysis_steps": [
+        {"id_ref": "transmission-1", "text": "初传见辰，为水库，主雨水积聚。", "principle": "取象", "details_key": "case-001-step-0"},
+        {"id_ref": "lesson-3", "text": "三课辰加申，申为水源，辰为水库，水源入库，雨渐大。", "principle": "类神", "details_key": "case-001-step-1"},
+        {"id_ref": "lesson-1", "text": "日上神玄武乘子水，亦主雨。", "principle": "天将", "details_key": "case-001-step-2"},
+        {"id_ref": "transmission-3", "text": "末传见申，长生之水，预示雨势将持续。", "principle": "生克", "details_key": "case-001-step-3"}
+      ],
+      "outcome": "当日申时开始下雨，持续到次日。"
+    },
+    {
+      "id": "case-002",
+      "title": "行人占",
+      "description": "这是一个判断远方行人何时归来的典型案例。",
+      "liuren_board": {
+        "meta": {
+          "subject": "占行人",
+          "datetime": "甲戌日 戊辰时",
+          "month_general": "神后 (子)",
+          "day_void": "申、酉",
+          "shas": ["国印", "华盖", "驿马"]
+        },
+        "earthly_plate": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+        "heavenly_plate": ["辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑", "寅", "卯"],
+        "heavenly_generals": ["贵", "蛇", "朱", "合", "勾", "青", "空", "虎", "常", "玄", "阴", "后"],
+        "lessons": [
+          {"id": "lesson-1", "gan": "甲", "zhi": "戌", "shen": "贵", "reveals": ["heaven-plate-戌", "earth-plate-甲"]},
+          {"id": "lesson-2", "gan": "戊", "zhi": "寅", "shen": "勾", "reveals": ["heaven-plate-寅", "earth-plate-戊"]},
+          {"id": "lesson-3", "gan": "戌", "zhi": "午", "shen": "常", "reveals": ["heaven-plate-午", "earth-plate-戌"]},
+          {"id": "lesson-4", "gan": "丁", "zhi": "亥", "shen": "蛇", "reveals": ["heaven-plate-亥", "earth-plate-丁"]}
+        ],
+        "transmissions": [
+          {"id": "transmission-1", "type": "初传", "zhi": "寅", "shen": "勾", "reveals": ["heaven-plate-寅", "earth-plate-寅"]},
+          {"id": "transmission-2", "type": "中传", "zhi": "午", "shen": "常", "reveals": ["heaven-plate-午", "earth-plate-午"]},
+          {"id": "transmission-3", "type": "末传", "zhi": "戌", "shen": "贵", "reveals": ["heaven-plate-戌", "earth-plate-戌"]}
+        ]
+      },
+      "analysis_steps": [
+        {"id_ref": "transmission-1", "text": "初传见寅木为驿马，主行人有动意。", "principle": "神煞", "details_key": "case-002-step-0"},
+        {"id_ref": "lesson-1", "text": "日上见戌土，为日干之财，人带财而行。", "principle": "类神", "details_key": "case-002-step-1"},
+        {"id_ref": "transmission-3", "text": "末传归日上，行人最终必归。戌为用神，断应在戌日。", "principle": "生克", "details_key": "case-002-step-2"}
+      ],
+      "outcome": "占后第七日为戌日，行人果然归来。"
+    },
+    {
+      "id": "case-003",
+      "title": "失物占",
+      "description": "占卜丢失的物品能否找回，以及在何方。",
+      "liuren_board": {
+        "meta": {
+          "subject": "占失物",
+          "datetime": "丁卯日 庚戌时",
+          "month_general": "从魁 (酉)",
+          "day_void": "戌、亥",
+          "shas": ["文昌", "桃花", "劫煞"]
+        },
+        "earthly_plate": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+        "heavenly_plate": ["戌", "亥", "子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉"],
+        "heavenly_generals": ["后", "阴", "玄", "常", "虎", "空", "青", "勾", "合", "朱", "蛇", "贵"],
+        "lessons": [
+          {"id": "lesson-1", "gan": "丁", "zhi": "卯", "shen": "青", "reveals": ["heaven-plate-卯", "earth-plate-丁"]},
+          {"id": "lesson-2", "gan": "辛", "zhi": "未", "shen": "常", "reveals": ["heaven-plate-未", "earth-plate-辛"]},
+          {"id": "lesson-3", "gan": "戌", "zhi": "丑", "shen": "阴", "reveals": ["heaven-plate-丑", "earth-plate-戌"]},
+          {"id": "lesson-4", "gan": "乙", "zhi": "巳", "shen": "勾", "reveals": ["heaven-plate-巳", "earth-plate-乙"]}
+        ],
+        "transmissions": [
+          {"id": "transmission-1", "type": "初传", "zhi": "丑", "shen": "阴", "reveals": ["heaven-plate-丑", "earth-plate-丑"]},
+          {"id": "transmission-2", "type": "中传", "zhi": "酉", "shen": "贵", "reveals": ["heaven-plate-酉", "earth-plate-酉"]},
+          {"id": "transmission-3", "type": "末传", "zhi": "巳", "shen": "勾", "reveals": ["heaven-plate-巳", "earth-plate-巳"]}
+        ]
+      },
+      "analysis_steps": [
+        {"id_ref": "lesson-2", "text": "日阴神见太常，乘未，太常主衣物，未为土，可能为布匹之类。", "principle": "类神", "details_key": "case-003-step-0"},
+        {"id_ref": "transmission-1", "text": "初传丑土，发用，丑为金库，财库发用，失物可寻。丑为东北方，应在东北方向寻找。", "principle": "取象", "details_key": "case-003-step-1"},
+        {"id_ref": "transmission-3", "text": "末传巳为丁火之旺地，财物最终可见。", "principle": "生克", "details_key": "case-003-step-2"}
+      ],
+      "outcome": "在屋子东北角的柜子中找到了丢失的衣物。"
+    }
+  ]
+}

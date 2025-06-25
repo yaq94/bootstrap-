@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试课例页面</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cases.css">
+</head>
+<body>
+    <main class="container py-5">
+        <h1>测试课例页面</h1>
+        <p>此页面用于硬编码测试课盘渲染功能。</p>
+
+        <div id="case-content-area">
+            <section id="interactive-board" class="mb-5">
+                <h2 class="mb-4 text-center">课盘沙盘</h2>
+                <div id="liuren-board-container" class="p-3 border rounded"></div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/board-renderer.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Hardcoded data for the first case
+            const testCaseData = {
+                "id": "case001",
+                "title": "邵彦和占雨（一）",
+                "liuren_board": {
+                    "earth_plate": ["子", "丑", "寅", "卯", "辰", "巳", "午", "未", "申", "酉", "戌", "亥"],
+                    "heaven_plate": ["辰", "巳", "午", "未", "申", "酉", "戌", "亥", "子", "丑", "寅", "卯"],
+                    "heavenly_generals": ["勾", "合", "朱", "蛇", "贵", "后", "阴", "玄", "常", "虎", "龙", "青"],
+                    "four_lessons": [
+                        {"id": "lesson-1", "gan": "丙", "zhi": "申", "shen": "贵"},
+                        {"id": "lesson-2", "gan": "庚", "zhi": "子", "shen": "常"},
+                        {"id": "lesson-3", "gan": "申", "zhi": "子", "shen": "常"},
+                        {"id": "lesson-4", "gan": "壬", "zhi": "辰", "shen": "勾"}
+                    ],
+                    "three_transmissions": [
+                        {"id": "transmission-1", "type": "初传", "zhi": "子", "shen": "常"},
+                        {"id": "transmission-2", "type": "中传", "zhi": "申", "shen": "贵"},
+                        {"id": "transmission-3", "type": "末传", "zhi": "辰", "shen": "勾"}
+                    ]
+                }
+            };
+            
+            // Directly call the renderer function from board-renderer.js
+            try {
+                if(typeof renderLiurenBoard === 'function') {
+                    renderLiurenBoard(testCaseData.liuren_board, 'liuren-board-container');
+                    console.log("renderLiurenBoard function was called.");
+                } else {
+                    console.error("renderLiurenBoard function is not defined. Check if js/board-renderer.js is loaded correctly.");
+                }
+            } catch (e) {
+                console.error("An error occurred while rendering the board:", e);
+            }
+        });
+    </script>
+</body>
+</html> 

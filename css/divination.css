@@ -1,0 +1,528 @@
+/* css/divination.css */
+/* 用于存放新版六壬排盘页面的自定义样式 */
+
+:root {
+    --settings-panel-width: 280px;
+    --info-panel-width: 320px;
+    --border-color: #dee2e6;
+    --background-color: #f8f9fa;
+    --panel-background: #ffffff;
+}
+
+/* 针对排盘页面的特殊布局 */
+.page-divination {
+    overflow: hidden; /* 禁用页面滚动，强化"应用感" */
+}
+
+/* 悬浮触发区域的样式 */
+#header-trigger,
+#footer-trigger {
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 20px; /* 触发区域的高度 */
+    z-index: 1051; /* 确保在最上层，可以被悬浮 */
+    /* background: rgba(255, 0, 0, 0.2);  调试时可以取消注释查看区域 */
+}
+
+#header-trigger {
+    top: 0;
+}
+
+#footer-trigger {
+    bottom: 0;
+}
+
+/* header和footer的样式 */
+.page-divination header,
+.page-divination footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1050;
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none; /* 默认不可交互 */
+}
+
+.page-divination header {
+    top: 0;
+    transform: translateY(-100%);
+}
+
+.page-divination footer {
+    bottom: 0;
+    transform: translateY(100%);
+}
+
+/* 通过 .is-visible 类来控制显示 */
+.page-divination header.is-visible,
+.page-divination footer.is-visible {
+    transform: translateY(0);
+    pointer-events: auto; /* 显示时恢复交互 */
+}
+
+
+.divination-container {
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+    height: 100vh; /* 主容器占满整个视口高度 */
+    background-color: var(--background-color);
+    overflow: hidden; /* 防止主容器滚动，允许内嵌的 main-content 滚动 */
+}
+
+
+/* A. 起课设置区 */
+.settings-panel {
+    width: var(--settings-panel-width);
+    flex-shrink: 0;
+    padding: 1.5rem;
+    border-right: 1px solid var(--border-color);
+    background-color: var(--panel-background);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.settings-panel.collapsed {
+    width: 80px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.settings-panel.collapsed .form-label,
+.settings-panel.collapsed .form-control,
+.settings-panel.collapsed #generate-chart span,
+.settings-panel.collapsed .settings-title {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.toggle-settings-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s 0.2s ease;
+}
+
+.settings-panel.collapsed .toggle-settings-btn {
+    opacity: 1;
+}
+
+/* B. 核心结果展示区 */
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    position: relative;
+    overflow-y: auto;
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+/* C. 辅助信息解读区 */
+.info-panel {
+    width: var(--info-panel-width);
+    flex-shrink: 0;
+    transition: margin-right 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background-color: var(--panel-background);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -2px 0 15px rgba(0,0,0,0.07);
+    z-index: 1000;
+    margin-right: calc(-1 * var(--info-panel-width)); /* 通过负margin将其移出屏幕 */
+}
+
+.info-panel.is-open {
+    margin-right: 0;
+}
+
+.info-panel-content {
+    padding: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+#info-panel-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+/* --- 信息面板标签页样式 --- */
+.info-panel-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.info-panel-tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.info-panel-tab:hover {
+    color: #0d6efd;
+}
+
+.info-panel-tab.active {
+    color: #212529;
+    border-bottom-color: #0d6efd;
+    font-weight: 500;
+}
+
+.info-panel-content-pane {
+    display: none;
+}
+
+.info-panel-content-pane.active {
+    display: block;
+    animation: fadeIn 0.4s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- 关系网络图样式 --- */
+.relation-graph {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    font-size: 0.9rem;
+}
+.relation-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+.relation-label {
+    font-weight: 500;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
+}
+.relation-node {
+    padding: 0.1rem 0.4rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+.relation-item.highlight .relation-node {
+    background-color: #ffc107;
+    border-color: #e9b000;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* --- 结果区域样式 --- */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
+    height: 100%;
+}
+
+.grid-item {
+    background-color: var(--panel-background);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    /* 动画初始状态 */
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.grid-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.grid-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+/* 将天地盘模块设置为横跨3列 */
+.tiandi-pan-container {
+    grid-column: 1 / -1;
+}
+
+.shensha-container {
+    grid-column: 1 / -1;
+}
+
+.result-module {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.module-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* 各模块内部样式 */
+
+/* 总览 */
+.judgement-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.ket-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+    margin: 0;
+}
+.ket-summary {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* 四课 */
+.sike-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 1;
+}
+.sike-lesson { text-align: center; }
+.sike-gods {
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+.sike-upper { display: block; font-size: 1.25rem; font-weight: 500; }
+.sike-lower { display: block; font-size: 1rem; color: #495057; }
+.sike-title { font-size: 0.8rem; color: #6c757d; }
+
+/* 三传 */
+.sanchuan-body {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.sanchuan-title {
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
+}
+
+.sanchuan-title:hover {
+    color: var(--bs-primary);
+}
+
+.sanchuan-item {
+    padding: 0 0.5rem;
+}
+
+.sanchuan-gods {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    min-width: 50px;
+}
+.sanchuan-general { color: #6c757d; font-size: 0.8rem; }
+.sanchuan-heaven { font-weight: 500; font-size: 1.1rem; }
+.sanchuan-earth { color: #495057; }
+.sanchuan-arrow { font-size: 1.5rem; color: #adb5bd; }
+
+/* 天地盘 (表格版) */
+.plate-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 0.9rem;
+}
+.plate-table td, .plate-table th {
+    padding: 0.35rem;
+    border: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+.plate-table th.dizhi {
+    background-color: #f8f9fa;
+    font-weight: normal;
+}
+.plate-table .plate-label {
+    background-color: #e9ecef;
+    font-weight: 600;
+    width: 50px;
+}
+.plate-table tr:hover td, .plate-table tr:hover th {
+    background-color: #f1f3f5;
+}
+
+/* --- SVG 天地盘样式 --- */
+.svg-pan-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 320px;
+}
+.pan-svg {
+    max-width: 100%;
+    max-height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.pan-circle {
+    fill: none;
+    stroke: #e9ecef;
+    stroke-width: 1px;
+}
+.pan-center-circle {
+    fill: #f8f9fa;
+    stroke: #dee2e6;
+}
+.pan-center-text {
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-size: 12px;
+    fill: #6c757d;
+}
+.pan-text {
+    text-anchor: middle;
+    dominant-baseline: central;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+.earth-text {
+    font-weight: 600;
+    font-size: 16px;
+}
+.heaven-text {
+    fill: #0d6efd;
+}
+.general-text {
+    fill: #dc3545;
+    font-size: 12px;
+}
+.palace-group.highlight .pan-text {
+    font-weight: bold;
+}
+.palace-group.highlight .earth-text { fill: #212529; }
+.palace-group.highlight .heaven-text { fill: #0a58ca; }
+
+/* 神煞 */
+.shensha-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.5rem;
+    align-content: start;
+}
+.shensha-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: background-color 0.2s ease;
+}
+.shensha-item:hover {
+    background-color: #e9ecef;
+}
+.shensha-name { font-weight: 500; }
+.shensha-value { color: #495057; }
+
+/* 加载动画样式 */
+.loading-spinner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+}
+
+
+/* 响应式调整：当屏幕宽度不足时，可以考虑隐藏侧边栏或改变布局 */
+@media (max-width: 992px) {
+    .settings-panel {
+        width: 240px;
+    }
+    .info-panel {
+        width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 在小屏幕上，可以考虑将设置区变为覆盖层，或者其他形式 */
+    .divination-container {
+        flex-direction: column;
+        height: auto;
+    }
+    .settings-panel {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .info-panel {
+        width: 100%;
+        height: 50vh; /* 例如，从底部向上滑动 */
+        top: auto;
+        bottom: 0;
+        transform: translateY(100%);
+    }
+     .info-panel.is-open {
+        transform: translateY(0);
+    }
+}
+
+.info-panel-content-container .blockquote-footer {
+    color: #888;
+}
+
+.interactive-text {
+    color: var(--bs-primary);
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.interactive-text:hover {
+    color: var(--bs-danger);
+    text-decoration: underline;
+}

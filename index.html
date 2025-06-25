@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大六壬知识科普网站 - 首页</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">大六壬知识科普</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" id="nav-index" href="index.html">首页</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-intro" href="intro.html">基础入门</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-deities" href="deities.html">神将释义</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-cases" href="cases.html">经典课例</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-divination" href="divination.html">在线排盘</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-books" href="books.html">古籍典藏</a></li>
+                        <li class="nav-item"><a class="nav-link" id="nav-community" href="community.html">留言交流</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Section: Cosmology -->
+        <section id="cosmology" class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">六壬宇宙观</h2>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div id="concept-text">
+                            <div data-concept="liuren" class="concept-content active-concept">
+                                <h3>何为大六壬？</h3>
+                                <p>它不仅是中国古代术数"三式"（太乙、奇门、六壬）之首，更是一套博大精深的宇宙信息全息模拟系统。其名源于《易经》："天生一，地六成之"，象征着水之始末，万物之源。</p>
+                                <p>大六壬以其独特的"天、地、人"三盘推演，模拟宇宙时空的动态关系，上测天时，下测地理，中测人事，无所不包。它完全建立在一套严谨、客观的数理逻辑之上。</p>
+                            </div>
+                            <div data-concept="yinyang" class="concept-content">
+                                <h3>阴阳之变</h3>
+                                <p>阴阳，作为宇宙间最基本的对立统一法则，是六壬思维的基石。它体现为昼夜、寒暑、奇偶等一切事物的两面性。</p>
+                                <p>在课盘中，天为阳，地为阴；干为阳，支为阴；昼为阳，夜为阴。万物的生发、变化、消亡，皆是阴阳二气消长流转的结果。</p>
+                            </div>
+                            <div data-concept="wuxing" class="concept-content">
+                                <h3>五行生克</h3>
+                                <p>五行，即木、火、土、金、水，是构成宇宙的五种基本能量形态。它们之间存在着相生（木生火，火生土...）与相克（木克土，土克水...）的动态关系。</p>
+                                <p>六壬课盘中的天干、地支、神将皆有五行属性，通过分析它们复杂的生克制化网络，我们得以洞察事物的内在驱动力和未来发展趋势。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center">
+                        <svg id="concept-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" class="img-fluid">
+                            <style>
+                                .concept-shape {
+                                    fill: rgba(255, 255, 255, 0.5);
+                                    stroke: var(--ink-gray-medium);
+                                    stroke-width: 1;
+                                    transition: all 0.3s ease;
+                                    cursor: pointer;
+                                }
+                                .concept-shape:hover {
+                                    stroke: var(--ink-black);
+                                }
+                                .concept-text {
+                                    font-family: var(--font-serif);
+                                    font-size: 16px;
+                                    text-anchor: middle;
+                                    pointer-events: none;
+                                }
+                                .active-svg {
+                                    stroke: var(--stamp-red);
+                                    stroke-width: 2;
+                                    fill: rgba(167, 38, 38, 0.05);
+                                }
+                            </style>
+                            <g class="concept-trigger" data-concept="yinyang">
+                                <circle class="concept-shape" cx="100" cy="70" r="45"/>
+                                <text class="concept-text" x="100" y="75">阴阳</text>
+                            </g>
+                            <g class="concept-trigger" data-concept="wuxing">
+                                <circle class="concept-shape" cx="200" cy="130" r="45"/>
+                                <text class="concept-text" x="200" y="135">五行</text>
+                            </g>
+                            <line stroke="var(--ink-gray-light)" stroke-dasharray="4" x1="128" y1="98" x2="172" y2="102"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Core Deduction Flow -->
+        <section id="flow" class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title">推演之道</h2>
+                </div>
+                <div class="accordion" id="flowAccordion">
+                    
+                    <!-- Accordion Item 1: Tiandi Pan -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                <i class="bi bi-calendar3-event me-3"></i>
+                                <strong>第一步：月将加时，立天地盘</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#flowAccordion">
+                            <div class="accordion-body">
+                                <p><strong>核心定义：</strong> 天地盘是整个六壬课式的基础，它是一个模拟特定时空下宇宙全息信息的动态模型。它由一个固定的"地盘"和一个旋转的"天盘"构成。地盘代表着大地、方位和固定的空间，永远以上北下南、左东右西的方式印刻着十二地支（子、丑、寅...亥）。天盘则代表着天道、时间的流转，它是一个"活"的盘，其位置是根据占事时间来决定的。立天地盘，就是校准当前这一刻的天道与地道关系，为所有后续推演提供一个精准的时空坐标系。</p>
+                                <p><strong>操作原理：</strong> 其原理根植于天文学和中国古代的宇宙观。古人认为，天（天盘）是运动的，地（地盘）是静止的。天道的运行深刻影响着地道上的人与事。而这种影响力的关键节点，就是太阳的视运动位置。所谓"月将"，就是指太阳每个月所"驾临"的黄道宫位。例如，雨水节气之后，太阳进入亥宫，此时的月将就是"亥"。而"占时"则是我们观察这一刻的"窗口"。将月将（能量核心）与占时（观察窗口）对齐，即"月将加时"，就等于把这一刻的宇宙能量场状态给"快照"了下来。天盘的十二地支也随之确定了位置，它们相对于固定地盘的位置，便产生了千变万化的对应关系。</p>
+                                <p><strong>执行方法：</strong> 假设现在是甲子日、午时占事，月将为亥。1. 首先，在地盘上找到"午"时所在的位置。2. 将天盘的"亥"（月将）对准地盘的"午"（占时）。3. 然后，天盘的其他十一个地支，按照（亥、子、丑、寅...）的顺序，顺时针依次覆盖在地盘的（午、未、申、酉...）之上。如此，天盘便旋转到位。例如，此时地盘"未"的上方是天盘的"子"，地盘"申"的上方是天盘的"丑"，以此类推。天地盘一立，万事万物在这一刻的相互关系便初步建立起来。</p>
+                                <p><strong>哲学内涵：</strong> 立天地盘的过程，本身就是一次"天人合一"思想的实践。它强调了"时间"的重要性，认为任何脱离了时间坐标的判断都是无根之木。天盘主动，地盘主静，象征着宇宙间"动"与"静"的辩证统一。它告诉我们，万事万物都处在一个由时间和空间交织而成的大网络中，任何一个点（人或事）的状态，都受到整个网络（天地盘）的影响。这是六壬系统性、全局性思维的第一步，也是最重要的一步。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 2: Sike -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <i class="bi bi-columns-gap me-3"></i>
+                                <strong>第二步：干支发用，立四课</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#flowAccordion">
+                            <div class="accordion-body">
+                                <p><strong>核心定义：</strong> 如果说天地盘是宏观的"世界地图"，那么四课就是这张地图上与我们本次"导航"最相关的四个关键"GPS定位点"。它们是连接宏观宇宙与具体微观事件（我与事）的核心纽带。四课由日干（代表求测人，我）和日支（代表所测事，或与我相关的人、地）为原点，向上发用（寻找其上的天盘神）而得到，共计四课。</p>
+                                <p><strong>操作原理：</strong> 六壬将一切关系都归结于"我"与"世界"的互动。日干代表人，日支代表地。因此，分析的核心，就是分析"人"与"地"的关系。第一课和第二课与日干相关，称为"干课"，主论"我"方的情况；第三课和第四课与日支相关，称为"支课"，主论"事"或对方的情况。第一课是"我"的直接状态（我之顶头上司），第二课是此状态的延伸（我顶头上司的顶头上司），由此构成"我"方的"阳"与"阴"两面。支课同理。这四课，如同一个CT扫描切片，清晰地展示出当前"我"与"事"之间最直接、最核心的四组对应关系，事物的矛盾、症结与机遇，都将在此初步显现。</p>
+                                <p><strong>执行方法：</strong> 仍以甲子日为例。1. 确定日干寄宫：天干"甲"无本宫，按规则寄宫于地支"寅"。2. <strong>取第一课（干上神）</strong>：在地盘上找到"寅"，看其上方的天盘神是什么，假设为"卯"。此为第一课。3. <strong>取第二课（干阳神）</strong>：看第一课的结果"卯"，在地盘上找到"卯"，再看其上方的天盘神是什么，假设为"辰"。此为第二课。4. <strong>取第三课（支上神）</strong>：在地盘上找到日支"子"，看其上方的天盘神是什么，假设为"丑"。此为第三课。5. <strong>取第四课（支阴神）</strong>：看第三课的结果"丑"，在地盘上找到"丑"，再看其上方的天盘神是什么，假设为"寅"。此为第四课。至此，日干（甲/寅）与日支（子）便生发出（卯、辰）与（丑、寅）四课。这四组关系，就是我们分析的起点。</p>
+                                <p><strong>哲学内涵：</strong> 四课体现了六壬严谨的逻辑推演链条和"由已知推未知"的思维方式。它从"干支"这个最核心的已知条件出发，一步步地"生发"出新的信息。同时，四课也蕴含着"一分为二"的辩证法思想。干为我，支为彼；干课为主动，支课为被动；一三课为阳，二四课为阴。它将一个静态的关系点，分解为四个既对立又统一的动态层面进行考察，使得分析的视角变得立体和全面。事物的矛盾往往就隐藏在四课的生克关系之中，这也是下一步"取三传"的关键依据。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 3: Sanchuan -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <i class="bi bi-diagram-3 me-3"></i>
+                                <strong>第三步：克贼取用，演三传</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#flowAccordion">
+                            <div class="accordion-body">
+                                <p><strong>核心定义：</strong> 如果说四课是事件的"静态结构图"，那么三传就是事物发展的"动态路线图"。它从事课所揭示的复杂关系中，提炼出一条最核心、最关键的矛盾演化链条，即"初传"、"中传"和"末传"。初传是事件的开端或原因，中传是发展的过程，末传是最终的结局或归宿。三传是六壬判断吉凶、成败、应期的核心依据。</p>
+                                <p><strong>操作原理：</strong> 六壬哲学认为，事物发展的根本动力来自于"矛盾"与"不平衡"。因此，取三传的首要原则，就是寻找四课中最激烈、最优先的"克"战关系。这套寻找和决策的规则，被称为"九宗门"，是一套极其精密的逻辑决策树。它首先检查有没有"下克上"（贼）或"上克下"（克）的关系，因为这代表着最直接的冲突。若有多处克战，则要通过"涉害法"比较谁受克的程度更深，来决定谁先发难。若四课一片祥和，毫无克战，则说明事物缺乏内在的驱动力，此时就要用"比用法"或"遥克法"，寻找潜在的或外部的动力来源。这套算法，完美模拟了现实世界中矛盾由主到次、由内到外的发生规律。</p>
+                                <p><strong>执行方法：</strong> 续前例，我们得到了四课。1. <strong>检查克贼</strong>：分析四课（干上卯，干阳辰；支上丑，支阴寅）与各自地盘（干甲/寅，支子）的五行关系。例如，干上神"卯"（木）与日干"甲/寅"（木）为比和，无克。支上神"丑"（土）克日支"子"（水），此为"上克下"。2. <strong>确定初传</strong>：由于只有一处克，即"丑克子"，那么引发这个"克"的"丑"就被选为初传。3. <strong>推演中末</strong>：从初传"丑"开始推演。在地盘找到"丑"，看其上方的天盘神是什么，假设为"寅"，那么"寅"就是中传。再到地盘找到中传"寅"，看其上方的天盘神是什么，假设为"卯"，那么"卯"就是末传。至此，我们得到"丑-寅-卯"这条三传路径。它揭示了事件将从"丑"所代表的状态开始，经过"寅"的阶段，最终归于"卯"的结果。</p>
+                                <p><strong>哲学内涵：</strong> 三传深刻地体现了中国传统的"过程哲学"和"矛盾论"。它认为任何事物都不是静止的，而是一个从"因"到"果"的连续流变过程。通过三传，我们将一个复杂的、多线程的局面，简化为一条单线程的主线任务，抓住了问题的主要矛盾。初、中、末传的设定，也符合事物"发生-发展-高潮/结局"的普遍规律。更重要的是，三传的五行属性及其与日干的关系，直接揭示了整个事件的吉凶属性。例如，三传生助日干，则事易成；三传克伤日干，则事多艰。可以说，读懂了三传，就等于拿到了解读整个事件剧本的"故事大纲"。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Accordion Item 4: Shenjiang -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <i class="bi bi-stars me-3"></i>
+                                <strong>第四步：布列神将，定性质</strong>
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#flowAccordion">
+                            <div class="accordion-body">
+                                <p><strong>核心定义：</strong> 如果说天地盘、四课、三传构建了事件的"骨架"和"逻辑"，那么十二天将（或称神将）就是为这个骨架注入"灵魂"和"血肉"的关键。它们是赋予课盘丰富人文色彩、具体事物性质和吉凶细节的符号系统。十二天将包括：贵人、螣蛇、朱雀、六合、勾陈、青龙、天空、白虎、太常、玄武、太阴、天后。每一个神将都有其独特的、非好即坏的象征意义。</p>
+                                <p><strong>操作原理：</strong> 天将系统模拟的是人间的社会结构与伦理关系。它以"天乙贵人"为核心，如同帝王或最高领导，其他神将则如同其麾下的文武百官，各司其职。贵人是至高无上的吉神，能解一切厄。青龙、六合、太常是文官、吉庆之神；白虎、勾陈、螣蛇是武官、凶煞之神。朱雀主文书口舌，玄武主盗贼暧昧，太阴主阴私算计，天后主妇人恩泽。这些神将并非凭空而来，而是依据日干和占时的昼夜关系，遵循"贵人登天门"的法则，被有序地"布置"在旋转的天盘十二个地支之上。如此一来，天盘的每一个地支，就同时拥有了"天将"和"地支"的双重属性。</p>
+                                <p><strong>执行方法：</strong> 仍以甲子日、午时占事为例。1. <strong>定昼夜贵人</strong>：日干为"甲"，占时为"午"时（白天）。查表得知，"甲"日的白天贵人（昼贵）是"未"。2. <strong>贵人定位</strong>：在地盘上找到贵人"未"的位置。3. <strong>顺逆布将</strong>：根据日干的阴阳属性（甲为阳干），决定十二天将是顺时针还是逆时针排布。阳干顺行，阴干逆行。"甲"为阳，故顺行。从地盘"未"开始，依次将贵人、螣蛇、朱雀...布于其上的天盘神。例如，地盘未上是天盘子，则"子"乘贵人；地盘申上是天盘丑，则"丑"乘螣蛇...直至十二天将布满天盘。4. <strong>解读课传</strong>：将布好的天将信息，代入到四课和三传中。例如，之前的三传是"丑-寅-卯"，现在我们知道"丑"乘螣蛇，"寅"乘朱雀，"卯"乘六合。那么事件的解读就立刻变得立体了：开端（初传丑）带有惊恐、缠绕的性质（螣蛇），过程中（中传寅）伴随着文书、口舌是非（朱雀），但最终结局（末传卯）却是和合、喜庆的（六合）。</p>
+                                <p><strong>哲学内涵：</strong> 布列神将是六壬从"数理推演"走向"人文解读"的飞跃。它承认世界不仅是由客观规律（五行生克）主导，也充满了吉凶、善恶、美丑等价值判断。神将系统为冰冷的干支符号赋予了鲜活的性格和具体的意象，使得判断可以深入到事情的性质、人物的心态、环境的优劣等具体而微的层面。这是六壬能够"算无遗策"、"细致入微"的关键所在。它提醒我们，在分析任何问题时，既要看其客观的逻辑发展（三传），也要洞察其内在的性质与状态（神将），二者结合，方能得出圆满的判断。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 3: Call to Action / Key Pages -->
+        <section id="cta" class="py-5">
+            <div class="container">
+                <div class="row text-center g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4">
+                            <i class="bi bi-book-half" style="font-size: 3rem;"></i>
+                            <h3 class="card-title mt-3">神将释义</h3>
+                            <p>查阅十二天将、月将的详细象征，理解他们在课盘中的作用。</p>
+                            <a href="deities.html" class="btn btn-primary mt-auto">前往查阅</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4">
+                            <i class="bi bi-compass" style="font-size: 3rem;"></i>
+                            <h3 class="card-title mt-3">在线排盘</h3>
+                            <p>输入时间，立刻生成大六壬课盘，亲自实践这门古老的智慧。</p>
+                            <a href="divination.html" class="btn btn-primary mt-auto">立即体验</a>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card h-100 p-4">
+                            <i class="bi bi-journal-bookmark" style="font-size: 3rem;"></i>
+                            <h3 class="card-title mt-3">经典课例</h3>
+                            <p>通过分析古代与现代的真实案例，学习六壬的实战判断技巧。</p>
+                            <a href="cases.html" class="btn btn-primary mt-auto">深入学习</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-dark text-white text-center p-3 mt-auto">
+        <div class="container">
+            <p>&copy; 2025 大六壬知识科普网站. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/masonry.pkgd.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html> 

@@ -1,0 +1,279 @@
+/* CSS for deities.html - The Book of Divine Generals */
+/* This file will contain all unique styles for the interactive deities page. */
+
+/* --- TOP SPLIT LAYOUT --- */
+.top-split-container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+#deities-intro,
+#deities-wheel {
+    flex: 1 1 50%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+}
+
+/* Ensure text in parallax is readable */
+#deities-intro .parallax-content {
+    color: var(--bs-dark);
+}
+
+/* Responsive stacking for smaller screens */
+@media (max-width: 992px) {
+    .top-split-container {
+        flex-direction: column;
+    }
+}
+
+/* CSS for Deities Page (神将策) */
+/* Shared Styles */
+h1, h2, h3 {
+    /* ... existing code ... */
+}
+
+/* --- MODULE 1: PARALLAX INTRO --- */
+.parallax-container {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1593481842398-95574041b658?q=80&w=2070&auto=format&fit=crop'); /* Placeholder - a subtle, dark, starry sky */
+    background-attachment: fixed; /* This creates the parallax effect */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+    z-index: -1;
+}
+
+.parallax-content h1 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* --- MODULE 2: CELESTIAL WHEEL --- */
+.celestial-wheel-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 2rem auto;
+    border: 2px dashed var(--ink-gray-light);
+    border-radius: 50%;
+}
+
+.celestial-wheel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center;
+}
+
+.celestial-general {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--ink-gray-light);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translate(-50%, -50%); /* Center the element */
+    transition: all 0.3s ease;
+}
+
+.celestial-general:hover {
+    background-color: white;
+    border-color: var(--stamp-red);
+    color: var(--stamp-red);
+}
+
+/* This is the key for keeping icons/text upright */
+.celestial-general > * {
+    transform: rotate(calc(var(--rotation-angle, 0) * -1deg));
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.celestial-general i {
+    font-size: 1.5rem;
+}
+
+.celestial-general span {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.celestial-detail-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+#celestial-detail-content {
+    transition: opacity 0.5s ease-in-out;
+}
+
+#celestial-detail-name {
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+/* --- MODULE 3: NARRATIVE SCROLL (Monthly Generals) --- */
+.narrative-wrapper {
+    position: relative;
+}
+
+.narrative-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--stamp-red) var(--ink-gray-light);
+}
+
+.narrative-scroll-container::-webkit-scrollbar { 
+    height: 8px; 
+}
+.narrative-scroll-container::-webkit-scrollbar-track { 
+    background: var(--ink-gray-light); 
+    border-radius: 4px; 
+}
+.narrative-scroll-container::-webkit-scrollbar-thumb { 
+    background-color: var(--stamp-red); 
+    border-radius: 4px; 
+}
+
+.narrative-section {
+    flex: 0 0 80%;
+    max-width: 450px;
+    height: 500px;
+    scroll-snap-align: center;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    border-radius: 1rem;
+    overflow: hidden;
+    margin: 0 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    background-size: cover;
+    background-position: center;
+    transition: all 0.4s ease;
+}
+
+.narrative-section:first-child { 
+    margin-left: 0; 
+}
+.narrative-section:last-child { 
+    margin-right: 0; 
+}
+
+.narrative-section:hover { 
+    transform: translateY(-10px); 
+}
+
+.narrative-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.narrative-zodiac {
+    font-size: 1.2rem;
+    color: var(--bs-warning);
+    font-weight: bold;
+}
+
+.narrative-description { 
+    opacity: 0.8; 
+}
+
+.narrative-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ink-gray-light);
+    margin: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot:hover,
+.nav-dot.active {
+    background-color: var(--stamp-red);
+    transform: scale(1.2);
+}
+
+/* --- MODULE 4: RELATIONSHIP MATRIX --- */
+.matrix-result-box {
+    border: 1px solid var(--ink-gray-light);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    background-color: var(--bs-light);
+}
+
+.matrix-result-box.result-sheng { 
+    border-left: 5px solid var(--bs-success); 
+    background-color: #e9f5e9; 
+}
+.matrix-result-box.result-ke { 
+    border-left: 5px solid var(--bs-danger); 
+    background-color: #fceeee; 
+}
+.matrix-result-box.result-bihe { 
+    border-left: 5px solid var(--bs-info); 
+    background-color: #eef7fa; 
+}
+.matrix-result-box.result-unknown { 
+    border-left: 5px solid var(--ink-gray-light); 
+}
+
+#matrix-result-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+} 

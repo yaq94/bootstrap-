@@ -1,0 +1,444 @@
+/* 
+==============================================
+DEITIES.CSS - 神将策
+==============================================
+Stylesheet for the 'Deities' page (deities.html).
+Contains all styles for the four main interactive modules:
+1. Parallax Intro
+2. Celestial Wheel
+3. Narrative Scroll
+4. Relationship Matrix
+==============================================
+*/
+
+/* --- GENERAL LAYOUT --- */
+.top-split-container {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+#deities-intro,
+#deities-wheel {
+    flex: 1 1 50%;
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 3rem;
+}
+
+/* Ensure text in parallax is readable */
+#deities-intro .parallax-content {
+    color: var(--bs-dark);
+}
+
+/* Responsive stacking for smaller screens */
+@media (max-width: 992px) {
+    .top-split-container {
+        flex-direction: column;
+    }
+}
+
+/* CSS for Deities Page (神将策) */
+/* Shared Styles */
+h1, h2, h3 {
+    /* ... existing code ... */
+}
+
+/* 
+==============================================
+MODULE 1: PARALLAX INTRO
+==============================================
+*/
+.parallax-container {
+    position: relative;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1593481842398-95574041b658?q=80&w=2070&auto=format&fit=crop'); /* Placeholder - a subtle, dark, starry sky */
+    background-attachment: fixed; /* This creates the parallax effect */
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.6);
+    z-index: -1;
+}
+
+.parallax-content h1 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.parallax-content > * {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.parallax-content h1 {
+    animation-delay: 0.2s;
+}
+
+.parallax-content .lead {
+    animation-delay: 0.4s;
+}
+
+.parallax-content hr {
+    animation-delay: 0.6s;
+}
+
+.parallax-content p.col-lg-8 {
+    animation-delay: 0.8s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 
+==============================================
+MODULE 2: CELESTIAL WHEEL
+==============================================
+*/
+.celestial-wheel-container {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    margin: 2rem auto;
+    border: 2px dashed var(--ink-gray-light);
+    border-radius: 50%;
+}
+
+.celestial-wheel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-origin: center;
+}
+
+.celestial-general {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid var(--ink-gray-light);
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform: translate(-50%, -50%); /* Center the element */
+    transition: all 0.3s ease;
+}
+
+.celestial-general:hover {
+    background-color: white;
+    border-color: var(--stamp-red);
+    color: var(--stamp-red);
+}
+
+/* This is the key for keeping icons/text upright */
+.celestial-general > * {
+    transform: rotate(calc(var(--rotation-angle, 0) * -1deg));
+    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.celestial-general i {
+    font-size: 1.5rem;
+}
+
+.celestial-general span {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.celestial-detail-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+#celestial-detail-content {
+    transition: opacity 0.5s ease-in-out;
+}
+
+#celestial-detail-name {
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.celestial-detail-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+.celestial-detail-name .text-muted {
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+.deity-meta .badge {
+    margin: 0 0.25rem;
+}
+.celestial-detail-desc {
+    font-size: 0.95rem;
+    max-height: 150px; /* Adjust as needed */
+    overflow-y: auto;
+    padding-right: 10px; /* For scrollbar */
+}
+
+/* 
+==============================================
+MODULE 3: NARRATIVE SCROLL & DETAIL MODAL
+==============================================
+*/
+
+/* --- Scroll Container --- */
+.narrative-wrapper {
+    position: relative;
+}
+
+.narrative-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--stamp-red) var(--ink-gray-light);
+}
+
+.narrative-scroll-container::-webkit-scrollbar { 
+    height: 8px; 
+}
+.narrative-scroll-container::-webkit-scrollbar-track { 
+    background: var(--ink-gray-light); 
+    border-radius: 4px; 
+}
+.narrative-scroll-container::-webkit-scrollbar-thumb { 
+    background-color: var(--stamp-red); 
+    border-radius: 4px; 
+}
+
+.narrative-section {
+    flex: 0 0 80%;
+    max-width: 400px;
+    height: 500px;
+    scroll-snap-align: center;
+    margin: 0 15px;
+    background-color: transparent;
+    perspective: 1500px;
+    cursor: pointer;
+}
+
+.narrative-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border-radius: 1rem;
+}
+
+.narrative-section:hover .narrative-card-inner {
+    transform: rotateY(180deg);
+}
+
+.narrative-card-front,
+.narrative-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.narrative-card-front {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.narrative-card-back {
+    background-color: var(--bs-light);
+    color: var(--bs-dark);
+    transform: rotateY(180deg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.narrative-section:first-child { 
+    margin-left: 0; 
+}
+.narrative-section:last-child { 
+    margin-right: 0; 
+}
+
+.narrative-content {
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent 60%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+}
+
+.narrative-zodiac {
+    font-size: 1.2rem;
+    color: var(--bs-warning);
+    font-weight: bold;
+}
+
+.narrative-description { 
+    opacity: 0.8; 
+}
+
+.narrative-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.5rem;
+}
+
+.nav-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--ink-gray-light);
+    margin: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-dot:hover,
+.nav-dot.active {
+    background-color: var(--stamp-red);
+    transform: scale(1.2);
+}
+
+/* --- Deity Detail Modal --- */
+#monthlyGeneralModal .modal-content {
+    background-color: var(--bs-light);
+    border: 2px solid var(--ink-gray-light);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    border-radius: 0.5rem;
+}
+
+#monthlyGeneralModal .modal-header {
+    border-bottom: 1px solid var(--ink-gray-light);
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+#monthlyGeneralModal .modal-title {
+    font-size: 2rem;
+    color: var(--bs-dark);
+}
+
+#monthlyGeneralModal .modal-body h4 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: var(--stamp-red);
+}
+
+#monthlyGeneralModal .modal-body .badge {
+    margin: 0.2rem;
+}
+
+/* 
+==============================================
+MODULE 4: RELATIONSHIP MATRIX
+==============================================
+*/
+.matrix-result-box {
+    border: 1px solid var(--ink-gray);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-top: 1rem;
+    text-align: center;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#matrix-result-text {
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#matrix-result-text.fade-out {
+    opacity: 0;
+}
+
+.matrix-result-box.result-sheng {
+    background-color: #e8f5e9; /* Light green */
+    border-color: #a5d6a7;
+    color: #388e3c;
+}
+
+.matrix-result-box.result-ke {
+    background-color: #fceeee; /* Light red */
+    border-color: #ef9a9a;
+    color: #d32f2f;
+}
+.matrix-result-box.result-bihe {
+    background-color: #eef7fa; /* Light blue */
+    border-color: #90caf9;
+    color: #1976d2;
+}
+.matrix-result-box.result-unknown {
+    background-color: #f5f5f5; /* Light gray */
+    border-color: #e0e0e0;
+    color: #616161;
+}
+
+#matrix-interpretation-content {
+    background-color: #ffffff;
+    border: 1px solid var(--ink-gray-light);
+    transition: opacity 0.5s ease-in-out;
+}
+
+#matrix-interpretation-content h3 {
+    font-family: 'ZCOOL KuaiLe', cursive;
+    color: var(--stamp-red);
+}
+
+#interpretation-specific {
+    border-left: 3px solid var(--stamp-red);
+    background-color: #f8f9fa !important; /* Use important to override inline style if needed, though better to remove inline style */
+} 
